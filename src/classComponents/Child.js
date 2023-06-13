@@ -5,12 +5,12 @@ export class ClassComponentsChild extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedValue: '' 
+      selectedNumber: '' 
     };
   }
 
   handleRadioChange = (event) => {
-    this.setState({ selectedValue: event.target.value });
+    this.setState({ selectedNumber: event.target.value });
   };
 
 
@@ -23,7 +23,7 @@ export class ClassComponentsChild extends React.Component {
               >
               <input type="radio" className="btn-check" name="btnradio" id="btnradio1"/>
               <label className="btn btn-outline-danger" htmlFor="btnradio1" value="1"
-              onChange={this.handleRadioChange}>1</label>
+              onClick={this.handleRadioChange}>1</label>
               <input type="radio" className="btn-check" name="btnradio" id="btnradio2"/>
               <label className="btn btn-outline-success" htmlFor="btnradio2" value="1"
               onChange={this.handleRadioChange}>2</label>
