@@ -1,56 +1,45 @@
+import React, { useState } from 'react';
+import HookButtonRow from './HookButtonRow';
+import Display from './Display';
 
-import React from 'react';
-import { ClassButtonRow } from './ButtonRow';
-import { DisplayNumber } from './DisplayNumber';
+function App() {
+  const [selectedNumber, setSelectedNumber] = useState('');
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedNumber: ''
-    };
-    this.selectNewNumber = this.selectNewNumber.bind(this);
+  const selectNewNumber = (newSelectedNumber) => {
+    setSelectedNumber(newSelectedNumber);
   }
 
-  selectNewNumber(newSelectedNumber){
-    this.setState(({ selectedNumber: newSelectedNumber}))
-  }
-
-
-  render() {
-    return (
-      <div>
-        <ClassButtonRow
-          number="1"
-          functionCheck={this.selectNewNumber}
-        />
-        <ClassButtonRow
-          number="2"
-          functionCheck={this.selectNewNumber}
-        />
-        <ClassButtonRow
-          number="3"
-          functionCheck={this.selectNewNumber}
-        />
-        <ClassButtonRow
-          number="4"
-          functionCheck={this.selectNewNumber}
-        />
-        <ClassButtonRow
-          number="5"
-          functionCheck={this.selectNewNumber}
-        />
-        <ClassButtonRow
-          number="6"
-          functionCheck={this.selectNewNumber}
-        />
-        <DisplayNumber
-          selectedNumber = {this.state.selectedNumber}
-        />
-      </div>
-      
-    );
-  }
+  return (
+    <div>
+      <HookButtonRow
+        number="1"
+        functionCheck={selectNewNumber}
+      />
+      <HookButtonRow
+        number="2"
+        functionCheck={selectNewNumber}
+      />
+      <HookButtonRow
+        number="3"
+        functionCheck={selectNewNumber}
+      />
+      <HookButtonRow
+        number="4"
+        functionCheck={selectNewNumber}
+      />
+      <HookButtonRow
+        number="5"
+        functionCheck={selectNewNumber}
+      />
+      <HookButtonRow
+        number="6"
+        functionCheck={selectNewNumber}
+      />
+      <Display
+        selectedNumber={selectedNumber}
+      />
+    </div>
+  );
 }
 
 export default App;
