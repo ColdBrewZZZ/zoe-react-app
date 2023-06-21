@@ -20,26 +20,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ClassButtonRow
-          number="1"
-          functionCheck={this.selectNewNumber}
-        />
-        <ClassButtonRow
-          number="2"
-          functionCheck={this.selectNewNumber}
-        />
-        <ClassButtonRow
-          number="3"
-          functionCheck={this.selectNewNumber}
-        />
-        <ClassButtonRow
-          number="4"
-          functionCheck={this.selectNewNumber}
-        />
-        <ClassButtonRow
-          number="5"
-          functionCheck={this.selectNewNumber}
-        />
+        {
+          [1, 2,3,4,5,6].map(number => <ClassButtonRow
+            number={number}
+            functionCheck={this.selectNewNumber}
+          />)
+        }       
         <ClassButtonRow
           number="6"
           functionCheck={this.selectNewNumber}
