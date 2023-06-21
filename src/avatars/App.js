@@ -8,6 +8,7 @@ import iroh from './img/iroh.JPG';
 import React, { useState } from 'react';
 
 import UserComponents from './UserComponents';
+import WaveComponent from './WaveComponent';
 
 function App() {
   const [userItems, setUserItems] = useState([
@@ -32,11 +33,12 @@ function App() {
 
 
     return (
-      <div>
-        
+      <>
+        <WaveComponent/>
+           
        
-            <div class="row m-2">
-              <div class="col-5">
+            <div class="row m-2 justify-content-end">
+              <div class="col-4">
                 {orderedUserItems.map((item) => (
                   <UserComponents
                     avatar={item.avatar}
@@ -51,7 +53,7 @@ function App() {
               </div>
             </div>
         
-      </div>
+      </>
     );
   }
 
