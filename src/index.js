@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import App from './avatars/App'; 
+import App from './moviePlayer/App'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
