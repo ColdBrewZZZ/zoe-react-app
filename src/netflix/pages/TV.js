@@ -1,18 +1,19 @@
 import React, { useState,useEffect } from 'react';
-import MovieComponent from './MovieComponent';
+import CardComponent from './CardComponent';
 import './Home.css';
 
 
 
-function Home() {
+function Movies(props) {
     
    
     //TMDB 
 
-    const API_KEY = 'api_key=d62b9f08c7e24702fe7b7bedf129c3e4';
-    const BASE_URL = 'https://api.themoviedb.org/3';
-    const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&'+API_KEY;
-    const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+    const API_KEY = props.API_KEY;
+    const BASE_URL = props.BASE_URL;
+    const API_URL = BASE_URL + '/trending/tv/day?sort_by=popularity.desc&'+API_KEY;
+    const IMG_URL = props.IMG_URL;
+    
 
     const [movieItems, setMovieItems] = useState([]);
 
@@ -46,9 +47,9 @@ function Home() {
         <main id="main">
         {movieItems.map((item) => (
           
-            <MovieComponent
+            <CardComponent
               image={IMG_URL + item.poster_path}
-              title={item.title}
+              title={item.name}
               score={item.vote_average}
               overview={item.overview}
             />
@@ -56,11 +57,8 @@ function Home() {
         ))}
       
         </main>
-
-      
-      
     </>
   );
 }
 
-export default Home;
+export default Movies;
