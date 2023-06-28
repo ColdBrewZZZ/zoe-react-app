@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import DedicatedPage from './pages/DedicatedPage';
-
+import './App.css';
 
 function App() {
    
