@@ -43,20 +43,19 @@ function Home() {
             </form>
         </header>
 
-        <div className="container">
-      <div className="row">
+        <main id="main">
         {movieItems.map((item) => (
-          <div class="col-4">
+          
             <MovieComponent
               image={IMG_URL + item.poster_path}
               title={item.title}
               score={item.vote_average}
               overview={item.overview}
             />
-          </div>
+          
         ))}
-      </div>
-    </div>
+      
+        </main>
 
       
       
