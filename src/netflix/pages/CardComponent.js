@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function MovieComponent(props) {
+function CardComponent(props) {
   return (
     <div class="movie">
       <h3>{props.title}</h3>
@@ -12,4 +12,4 @@ function MovieComponent(props) {
   );
 }
 
-export default MovieComponent;
+export default CardComponent;
