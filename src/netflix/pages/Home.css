@@ -5,27 +5,28 @@
     border: 2px solid rgb(237, 13, 13);
     padding:0.5rem 1rem;
     border-radius: 50px;
-    background-color: rgb(243, 243, 131);
+    background-color: beige;
 }
 
 .search:focus{
     outline:0;
-    background-color: rgb(238, 245, 236);
+    background-color: rgb(255, 255, 255);
 }
 
-/* movies */
+/* movies /////// */
 
-.main{
+#main{
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .movie {
+    width: 300px;
     margin: 1rem;
-    border-radius: 10px;
+    border-radius: 3px;
     box-shadow: 0.2px 4px 5px black;
-    background-color: rgb(231, 148, 39);
+    background-color: rgb(236, 173, 90);
     position: relative;
     overflow: hidden;
 }
