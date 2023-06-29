@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CardComponent from './CardComponent';
+import Filter from './Filter';
 import './Home.css';
 
 function Movies(props) {
@@ -8,6 +9,7 @@ function Movies(props) {
   const BASE_URL = props.BASE_URL;
   const API_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&${API_KEY}`;
   const IMG_URL = props.IMG_URL;
+  const GENRE_LIST = '/genre/movie/list?';
 
   const [movieItems, setMovieItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -30,10 +32,16 @@ function Movies(props) {
     fetchMovies();
   }, [API_URL, BASE_URL, API_KEY, searchQuery]);
 
+ 
+
   return (
     <>
       <header>
         <h1>movies</h1>
+        <Filter
+        BASE_URL={BASE_URL}
+        API_KEY={API_KEY}
+        GENRE_LIST={GENRE_LIST}/>
         <form
           onSubmit={(e) => {
             e.preventDefault();
