@@ -2,13 +2,8 @@ import React, { useState,useEffect } from 'react';
 import CardComponent from './CardComponent';
 import './Home.css';
 
-
-
-function Movies(props) {
-    
-   
+function TV(props) {
     //TMDB 
-
     const API_KEY = props.API_KEY;
     const BASE_URL = props.BASE_URL;
     const API_URL = BASE_URL + '/trending/tv/day?sort_by=popularity.desc&'+API_KEY;
@@ -16,33 +11,46 @@ function Movies(props) {
     
 
     const [movieItems, setMovieItems] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const GetMovies = (url) => {
-        useEffect(() => {
-            const fetchMovies = async () => {
-              try {
-                const response = await fetch(url);
-                const data = await response.json();
-                setMovieItems(data.results);
-              } catch (error) {
-                console.error('Error fetching movies:', error);
-              }
-            };
-        
-            fetchMovies();
-          }, [url]);
-    }
+    useEffect(() => {
+        const fetchMovies = async () => {
+          try {
+            const url = searchQuery
+              ? `${BASE_URL}/search/tv?query=${searchQuery}&include_adult=false&language=en-US&page=1&${API_KEY}`
+              : API_URL;
+    
+            const response = await fetch(url);
+            const data = await response.json();
+            setMovieItems(data.results);
+          } catch (error) {
+            console.error('Error fetching movies:', error);
+          }
+        };
+    
+        fetchMovies();
+      }, [API_URL, BASE_URL, API_KEY, searchQuery]);
 
-    GetMovies(API_URL);
-    console.log(movieItems);
 
   return (
     <>
         <header>
-            <form>
-                <input type="text" placeholder='Search' id="Search" class="search"></input>
-            </form>
-        </header>
+            <h1>TV</h1>
+            <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Search"
+            id="Search"
+            className="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </form>
+      </header>
 
         <main id="main">
         {movieItems.map((item) => (
@@ -61,4 +69,4 @@ function Movies(props) {
   );
 }
 
-export default Movies;
+export default TV;
