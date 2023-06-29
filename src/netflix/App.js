@@ -9,6 +9,7 @@ function App() {
     const API_KEY = 'api_key=d62b9f08c7e24702fe7b7bedf129c3e4';
     const BASE_URL = 'https://api.themoviedb.org/3';
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+    const genres = `${BASE_URL}/genre/movie/list?${API_KEY}`
 
 
   const navigate = useNavigate();
