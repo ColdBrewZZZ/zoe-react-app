@@ -28,8 +28,8 @@ function App() {
 
   return (
     <div>
-      <h1>Netflix</h1>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <h1>Netflix</h1>
         <ul className="navbar-nav mr-auto">
           <button className="btn nav-link" onClick={navigateToTV}>TV</button>
           <button className="btn nav-link" onClick={navigateToMovies}>Movies</button>
