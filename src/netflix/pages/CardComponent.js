@@ -1,19 +1,15 @@
 import React from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-
-
+import { useNavigate } from 'react-router-dom';
 
 function CardComponent(props) {
-
   const navigate = useNavigate();
 
   const navigateToDedicatedPage = () => {
-    navigate('/DedicatedPage');
-  }
-
+    navigate('/DedicatedPage', { state: { title: props.title, image: props.image } });
+  };
 
   return (
-    <div class="movie" onClick={navigateToDedicatedPage}>
+    <div className="movie" onClick={navigateToDedicatedPage} style={{ cursor: 'pointer'}}>
       <h3>{props.title}</h3>
       <img className="border mt-2 border-dark rounded" src={props.image} alt={props.title} />
       <div>Score: {props.score}</div>
@@ -23,6 +19,3 @@ function CardComponent(props) {
 }
 
 export default CardComponent;
-
-
-
