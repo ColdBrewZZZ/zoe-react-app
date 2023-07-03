@@ -7,14 +7,18 @@ function Movies(props) {
   // TMDB
   const API_KEY = props.API_KEY;
   const BASE_URL = props.BASE_URL;
-  const API_URL = `${BASE_URL}/discover/movie?sort_by=popularity.desc&${API_KEY}`;
   const IMG_URL = props.IMG_URL;
   const GENRE_LIST = '/genre/movie/list?';
 
   const [movieItems, setMovieItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [genreID, setGenreID] = useState(null); 
 
   useEffect(() => {
+    const API_URL = genreID
+      ? `${BASE_URL}/discover/movie?sort_by=popularity.desc&with_genres=${genreID}&${API_KEY}`
+      : `${BASE_URL}/discover/movie?sort_by=popularity.desc&${API_KEY}`;
+
     const fetchMovies = async () => {
       try {
         const url = searchQuery
@@ -30,18 +34,18 @@ function Movies(props) {
     };
 
     fetchMovies();
-  }, [API_URL, BASE_URL, API_KEY, searchQuery]);
-
- 
+  }, [BASE_URL, API_KEY, genreID, searchQuery]);
 
   return (
     <>
       <header>
         <h1>movies</h1>
         <Filter
-        BASE_URL={BASE_URL}
-        API_KEY={API_KEY}
-        GENRE_LIST={GENRE_LIST}/>
+          BASE_URL={BASE_URL}
+          API_KEY={API_KEY}
+          GENRE_LIST={GENRE_LIST}
+          setGenreID={setGenreID} 
+        />
         <form
           onSubmit={(e) => {
             e.preventDefault();

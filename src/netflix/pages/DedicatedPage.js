@@ -5,7 +5,7 @@ function DedicatedPage() {
 
   return (
     <div>
-      <h2>THIS IS ONE MOVIE</h2>
+      <h1>THIS IS ONE MOVIE</h1>
       
     </div>
   );

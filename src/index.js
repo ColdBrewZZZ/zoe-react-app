@@ -5,7 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter } from 'react-router-dom'
-import App from './examP2/App';
+import App from './netflix/App';
 
 ReactDOM.render((
   <BrowserRouter>
