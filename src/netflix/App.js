@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import DedicatedPage from './pages/DedicatedPage';
 import TV from './pages/TV';
 import Movies from './pages/Movies';
@@ -9,7 +9,7 @@ function App() {
     const API_KEY = 'api_key=d62b9f08c7e24702fe7b7bedf129c3e4';
     const BASE_URL = 'https://api.themoviedb.org/3';
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-    const genres = `${BASE_URL}/genre/movie/list?${API_KEY}`
+    
 
 
   const navigate = useNavigate();
@@ -22,11 +22,13 @@ function App() {
     navigate('/Movies');
   };
 
+ 
+
   
 
   return (
     <div>
-      <h2>Netflix</h2>
+      <h1>Netflix</h1>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <ul className="navbar-nav mr-auto">
           <button className="btn nav-link" onClick={navigateToTV}>TV</button>
