@@ -31,8 +31,8 @@ function App() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <h1>Netflix</h1>
         <ul className="navbar-nav mr-auto">
-          <button className="btn nav-link" onClick={navigateToTV}>TV</button>
-          <button className="btn nav-link" onClick={navigateToMovies}>Movies</button>
+          <button className="btn btn-info ml-5 border" onClick={navigateToTV}>TV</button>
+          <button className="btn btn-info ml-2 border" onClick={navigateToMovies}>Movies</button>
         </ul>
       </nav>
 

@@ -38,19 +38,10 @@ function Movies(props) {
 
   return (
     <>
-      <header>
-        <h1>movies</h1>
-        <Filter
-          BASE_URL={BASE_URL}
-          API_KEY={API_KEY}
-          GENRE_LIST={GENRE_LIST}
-          setGenreID={setGenreID} 
-        />
+      <header className="text-center">
+        <h1>Movies</h1>
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
+          onSubmit={(e) => {e.preventDefault();}}>
           <input
             type="text"
             placeholder="Search"
@@ -62,17 +53,30 @@ function Movies(props) {
         </form>
       </header>
 
-      <main id="main">
-        {movieItems && movieItems.map((item) => (
-          <CardComponent
-            key={item.id}
-            image={IMG_URL + item.poster_path}
-            title={item.title}
-            score={item.vote_average}
-            overview={item.overview}
-          />
-        ))}
-      </main>
+      <div className="row">
+          <div className="col-md-3 ml-1">
+              <Filter
+                BASE_URL={BASE_URL}
+                API_KEY={API_KEY}
+                GENRE_LIST={GENRE_LIST}
+                setGenreID={setGenreID} 
+              />
+            </div>
+
+          <main id="main" className="col-md">
+            {movieItems && movieItems.map((item) => (
+              <CardComponent
+                key={item.id}
+                image={IMG_URL + item.poster_path}
+                title={item.title}
+                score={item.vote_average}
+                overview={item.overview}
+              />
+            ))}
+          </main>
+      </div>
+
+      
     </>
   );
 }
