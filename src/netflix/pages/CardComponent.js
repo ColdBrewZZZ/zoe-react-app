@@ -5,7 +5,7 @@ function CardComponent(props) {
   const navigate = useNavigate();
 
   const navigateToDedicatedPage = () => {
-    navigate('/DedicatedPage', { state: { title: props.title, image: props.image } });
+    navigate('/DedicatedPage', { state: { title: props.title, image: props.image, id: props.id, type: props.type, overview: props.overview } });
   };
 
   return (

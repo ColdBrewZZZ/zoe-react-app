@@ -66,11 +66,12 @@ function Movies(props) {
           <main id="main" className="col-md">
             {movieItems && movieItems.map((item) => (
               <CardComponent
-                key={item.id}
+                id={item.id}
                 image={IMG_URL + item.poster_path}
                 title={item.title}
                 score={item.vote_average}
                 overview={item.overview}
+                type={"movie"}
               />
             ))}
           </main>
