@@ -14,6 +14,8 @@ function TV(props) {
   const [searchQuery, setSearchQuery] = useState('');
   const [genreID, setGenreID] = useState(null);
 
+ 
+
   useEffect(() => {
     const API_URL = genreID
       ? `${BASE_URL}/discover/tv?sort_by=popularity.desc&with_genres=${genreID}&${API_KEY}`
@@ -64,6 +66,7 @@ function TV(props) {
                 API_KEY={API_KEY}
                 GENRE_LIST={GENRE_LIST}
                 setGenreID={setGenreID} 
+                certifications={['TV-MA', 'TV-14', 'TV-PG', 'TV-G']}
               />
             </div>
 
