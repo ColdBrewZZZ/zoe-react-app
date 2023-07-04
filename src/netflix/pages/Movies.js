@@ -13,11 +13,14 @@ function Movies(props) {
   const [movieItems, setMovieItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [genreID, setGenreID] = useState(null); 
+  const [certification, setCertification] = useState(null);
+
+  console.log(certification)
 
   useEffect(() => {
-    const API_URL = genreID
-      ? `${BASE_URL}/discover/movie?sort_by=popularity.desc&with_genres=${genreID}&${API_KEY}`
-      : `${BASE_URL}/discover/movie?sort_by=popularity.desc&${API_KEY}`;
+    const API_URL = `${BASE_URL}/discover/movie?certification=${certification}&certification_country=US&include_adult=false&include_video=false&language=en-US&page=1&region=US&sort_by=popularity.desc&with_genres=${genreID}&${API_KEY}`
+    
+      
 
     const fetchMovies = async () => {
       try {
@@ -34,7 +37,7 @@ function Movies(props) {
     };
 
     fetchMovies();
-  }, [BASE_URL, API_KEY, genreID, searchQuery]);
+  }, [BASE_URL, API_KEY, genreID, searchQuery, certification]);
 
   return (
     <>
@@ -59,7 +62,9 @@ function Movies(props) {
                 BASE_URL={BASE_URL}
                 API_KEY={API_KEY}
                 GENRE_LIST={GENRE_LIST}
-                setGenreID={setGenreID} 
+                setGenreID={setGenreID}
+                setCertification={setCertification}
+                certifications={['R', 'PG-13', 'PG', 'G']}
               />
             </div>
 
