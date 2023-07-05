@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CardComponent from './CardComponent';
-import Filter from './Filter';
+import Filter from './GenreFilter';
 import './Home.css';
+import CertificationFilter from './CertificationFilter';
 
 function Movies(props) {
   // TMDB
@@ -9,6 +10,7 @@ function Movies(props) {
   const BASE_URL = props.BASE_URL;
   const IMG_URL = props.IMG_URL;
   const GENRE_LIST = '/genre/movie/list?';
+  const certifications = ['R', 'PG-13', 'PG', 'G'];
 
   const [movieItems, setMovieItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -37,7 +39,7 @@ function Movies(props) {
     };
 
     fetchMovies();
-  }, [BASE_URL, API_KEY, genreID, searchQuery, certification]);
+  }, [genreID, searchQuery, certification]);
 
   return (
     <>
@@ -63,12 +65,17 @@ function Movies(props) {
                 API_KEY={API_KEY}
                 GENRE_LIST={GENRE_LIST}
                 setGenreID={setGenreID}
-                setCertification={setCertification}
-                certifications={['R', 'PG-13', 'PG', 'G']}
               />
+              <CertificationFilter
+              setCertification={setCertification}
+              certifications={certifications}/>
+              
             </div>
 
           <main id="main" className="col-md">
+            {/* { 
+              !movieItems.length ? <Loader /> : map...
+            } */}
             {movieItems && movieItems.map((item) => (
               <CardComponent
                 id={item.id}

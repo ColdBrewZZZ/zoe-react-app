@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CardComponent from './CardComponent';
-import Filter from './Filter';
+import Filter from './GenreFilter';
 import './Home.css';
 
 function TV(props) {
@@ -13,13 +13,12 @@ function TV(props) {
   const [movieItems, setMovieItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [genreID, setGenreID] = useState(null);
+ 
 
  
 
   useEffect(() => {
-    const API_URL = genreID
-      ? `${BASE_URL}/discover/tv?sort_by=popularity.desc&with_genres=${genreID}&${API_KEY}`
-      : `${BASE_URL}/trending/tv/day?sort_by=popularity.desc&${API_KEY}`;
+    const API_URL = `${BASE_URL}/discover/tv?sort_by=popularity.desc&with_genres=${genreID}&${API_KEY}`;
 
     const fetchMovies = async () => {
       try {
@@ -36,7 +35,7 @@ function TV(props) {
     };
 
     fetchMovies();
-  }, [BASE_URL, API_KEY, genreID, searchQuery]);
+  }, [genreID, searchQuery]);
 
   return (
     <>
@@ -66,7 +65,6 @@ function TV(props) {
                 API_KEY={API_KEY}
                 GENRE_LIST={GENRE_LIST}
                 setGenreID={setGenreID} 
-                certifications={['TV-MA', 'TV-14', 'TV-PG', 'TV-G']}
               />
             </div>
 
