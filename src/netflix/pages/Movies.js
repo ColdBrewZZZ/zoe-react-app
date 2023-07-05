@@ -3,6 +3,7 @@ import CardComponent from './CardComponent';
 import Filter from './GenreFilter';
 import './Home.css';
 import CertificationFilter from './CertificationFilter';
+import SearchBar from './SearchBar';
 
 function Movies(props) {
   // TMDB
@@ -45,17 +46,9 @@ function Movies(props) {
     <>
       <header className="text-center">
         <h1>Movies</h1>
-        <form
-          onSubmit={(e) => {e.preventDefault();}}>
-          <input
-            type="text"
-            placeholder="Search"
-            id="Search"
-            className="search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </form>
+        <SearchBar 
+          searchQuery={searchQuery} 
+          setSearchQuery={setSearchQuery} />
       </header>
 
       <div className="row">
