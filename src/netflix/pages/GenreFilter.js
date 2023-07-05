@@ -22,9 +22,7 @@ function Filter(props) {
     props.setGenreID(genre.id);
   };
 
-  const handleCertificationClick = (certification) => {
-    props.setCertification(certification);
-  }
+
 
   return (
     <div>
@@ -35,13 +33,7 @@ function Filter(props) {
         ))}
          <button onClick={() => handleGenreClick(0)}>All</button>
       </ul>
-      <h1>Ratings:</h1>
-      <ul>
-        {props.certifications.map((certification) => (
-          <button onClick={() => handleCertificationClick(certification)}>{certification}</button>
-        ))}
-        <button onClick={() => handleCertificationClick(0)}>All</button>
-      </ul>
+      
     </div>
   );
 }
