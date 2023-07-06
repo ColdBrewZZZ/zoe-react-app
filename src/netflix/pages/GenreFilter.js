@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import './filter.css';
 
 function Filter(props) {
   const [genres, setGenres] = useState([]);
+  const [selectedGenreID, setSelectedGenreID] = useState(null);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -20,24 +22,37 @@ function Filter(props) {
 
   const handleGenreClick = (genre) => {
     props.setGenreID(genre.id);
+    setSelectedGenreID(genre.id);
   };
 
-
+  const handleAllClick = (zero) => {
+    props.setGenreID(zero);
+    setSelectedGenreID(zero);
+  };
 
   return (
     <div>
       <h1>Genres:</h1>
       <ul>
         {genres.map((genre) => (
-            <button onClick={() => handleGenreClick(genre)}>{genre.name}</button>
+          <button
+            key={genre.id}
+            className={selectedGenreID === genre.id ? 'selected' : ''}
+            onClick={() => handleGenreClick(genre)}
+          >
+            {genre.name}
+          </button>
         ))}
-         <button onClick={() => handleGenreClick(0)}>All</button>
+        <button
+          className={selectedGenreID === null ? 'selected' : ''}
+          onClick={() => handleAllClick(null)}
+          >
+          All
+        </button>
+
       </ul>
-      
     </div>
   );
 }
 
 export default Filter;
-
-
