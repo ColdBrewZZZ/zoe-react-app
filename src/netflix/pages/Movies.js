@@ -4,6 +4,7 @@ import Filter from './GenreFilter';
 import './Home.css';
 import CertificationFilter from './CertificationFilter';
 import SearchBar from './SearchBar';
+import Loader from './Loader';
 
 function Movies(props) {
   // TMDB
@@ -66,10 +67,8 @@ function Movies(props) {
             </div>
 
           <main id="main" className="col-md">
-            {/* { 
-              !movieItems.length ? <Loader /> : map...
-            } */}
-            {movieItems && movieItems.map((item) => (
+            
+              {!movieItems.length ? <Loader /> : movieItems && movieItems.map((item) => (
               <CardComponent
                 id={item.id}
                 image={IMG_URL + item.poster_path}

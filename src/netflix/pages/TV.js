@@ -3,6 +3,7 @@ import CardComponent from './CardComponent';
 import Filter from './GenreFilter';
 import './Home.css';
 import SearchBar from './SearchBar';
+import Loader from './Loader';
 
 function TV(props) {
   // TMDB
@@ -59,7 +60,7 @@ function TV(props) {
             </div>
 
           <main id="main" className="col-md">
-            {movieItems && movieItems.map((item) => (
+          {!movieItems.length ? <Loader /> : movieItems && movieItems.map((item) => (
               <CardComponent
                 id={item.id}
                 image={IMG_URL + item.poster_path}
