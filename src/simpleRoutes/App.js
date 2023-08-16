@@ -27,7 +27,7 @@ function App() {
           <Route path="/" element={<Home 
           
           />} />
-          <Route path="/DedicatedPAge" element={<DedicatedPage
+          <Route path="/DedicatedPage" element={<DedicatedPage
           
           />} /> 
           
