@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send('these are the users');
 });
 
-router.get('/newEndpoint', function(req, res, next) {
-  res.send('this is a new enpoint for users');
+router.get('/user', function(req, res, next) {
+  res.send('this is just one user');
 });
 
 module.exports = router;
