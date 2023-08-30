@@ -5,11 +5,13 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter } from 'react-router-dom'
-import App from './simpleHTTPServer/app';
+//import App from './simpleHTTPServer/app';
+
+import binaryTree from './practice/binaryTree'
 
 ReactDOM.render((
   <BrowserRouter>
-    <App />
+    <binaryTree />
   </BrowserRouter>
 ), document.getElementById('root'))
 // If you want to start measuring performance in your app, pass a function

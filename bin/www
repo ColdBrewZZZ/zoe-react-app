@@ -1,90 +1,436 @@
-#!/usr/bin/env node
+// #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
+// /**
+//  * Module dependencies.
+//  */
 
-var app = require('../app');
-var debug = require('debug')('zoe-react-app-june:server');
-var http = require('http');
+// var app = require('../app');
+// var debug = require('debug')('zoe-react-app-june:server');
+// var http = require('http');
 
-/**
- * Get port from environment and store in Express.
- */
+// /**
+//  * Get port from environment and store in Express.
+//  */
 
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+// var port = normalizePort(process.env.PORT || '3000');
+// app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+// /**
+//  * Create HTTP server.
+//  */
 
-var server = http.createServer(app);
+// var server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+// /**
+//  * Listen on provided port, on all network interfaces.
+//  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+// server.listen(port);
+// server.on('error', onError);
+// server.on('listening', onListening);
 
-/**
- * Normalize a port into a number, string, or false.
- */
+// /**
+//  * Normalize a port into a number, string, or false.
+//  */
 
-function normalizePort(val) {
-  var port = parseInt(val, 10);
+// function normalizePort(val) {
+//   var port = parseInt(val, 10);
 
-  if (isNaN(port)) {
-    // named pipe
-    return val;
+//   if (isNaN(port)) {
+//     // named pipe
+//     return val;
+//   }
+
+//   if (port >= 0) {
+//     // port number
+//     return port;
+//   }
+
+//   return false;
+// }
+
+// /**
+//  * Event listener for HTTP server "error" event.
+//  */
+
+// function onError(error) {
+//   if (error.syscall !== 'listen') {
+//     throw error;
+//   }
+
+//   var bind = typeof port === 'string'
+//     ? 'Pipe ' + port
+//     : 'Port ' + port;
+
+//   // handle specific listen errors with friendly messages
+//   switch (error.code) {
+//     case 'EACCES':
+//       console.error(bind + ' requires elevated privileges');
+//       process.exit(1);
+//       break;
+//     case 'EADDRINUSE':
+//       console.error(bind + ' is already in use');
+//       process.exit(1);
+//       break;
+//     default:
+//       throw error;
+//   }
+// }
+
+// /**
+//  * Event listener for HTTP server "listening" event.
+//  */
+
+// function onListening() {
+//   var addr = server.address();
+//   var bind = typeof addr === 'string'
+//     ? 'pipe ' + addr
+//     : 'port ' + addr.port;
+//   debug('Listening on ' + bind);
+// }
+
+
+class Node {
+  constructor(data) {
+      this.data = data;
+      //this.info = info;
+      this.left = null;
+      this.right = null;
   }
 
-  if (port >= 0) {
-    // port number
-    return port;
+  //info 
+  get Info() {
+      return this.info;
   }
 
-  return false;
+  set Info(value) {
+      this.info = value;
+  }
+
+  // left
+  get Left() {
+      return this.left;
+  }
+
+  set Left(node) {
+      this.left = node;
+  }
+
+  // right
+  get Right() {
+      return this.right;
+  }
+
+  set Right(node) {
+      this.right = node;
+  }
+
+  // toString() 
+  toString() {
+    return {
+        preorder: this.preorderString(this),
+        inorder: this.inorderString(this),
+        postorder: this.postorderString(this)
+    };
 }
 
-/**
- * Event listener for HTTP server "error" event.
- */
+   
 
-function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
+// preorder
+preorderString(node) {
+    if (node === null) {
+        return '';
+    }
+
+    const leftStr = this.preorderString(node.left);
+    const rightStr = this.preorderString(node.right);
+
+    if (leftStr || rightStr) {
+        return `${node.data}${leftStr ? ', ' : ''}${leftStr}${rightStr ? ', ' : ''}${rightStr}`;
+    } else {
+        return `${node.data}`;
+    }
+}
+
+// inorder
+inorderString(node) {
+    if (node === null) {
+        return '';
+    }
+
+    const leftStr = this.inorderString(node.left);
+    const rightStr = this.inorderString(node.right);
+
+    if (leftStr) {
+        return `${leftStr}, ${node.data}${rightStr ? ', ' : ''}${rightStr}`;
+    } else {
+        return `${node.data}${rightStr ? ', ' : ''}${rightStr}`;
+    }
+}
+
+// post order
+postorderString(node) {
+    if (node === null) {
+        return '';
+    }
+
+    const leftStr = this.postorderString(node.left);
+    const rightStr = this.postorderString(node.right);
+
+    if (leftStr || rightStr) {
+        return `${leftStr}${rightStr ? ', ' : ''}${rightStr}, ${node.data}`;
+    } else {
+        return `${node.data}`;
+    }
+}
+
+// tree
+
+//   printTree(node, indent) {
+//     let result = `Data: ${node.data}\n`;
+
+//     if (node.left) {
+//         result += `${indent}  left: ${this.printTree(node.left, indent + '    ')}\n`;
+//     } else {
+//         result += `${indent}  left: null\n`;
+//     }
+
+//     if (node.right) {
+//         result += `${indent}  right: ${this.printTree(node.right, indent + '    ')}\n`;
+//     } else {
+//         result += `${indent}  right: null\n`;
+//     }
+
+//     return result;
+// }
+  
+
+  // count
+
+  countNodes() {
+      if(this.head === null) {
+          return null
+      }
+  
+      let counter = 1;
+  
+      console.log(this.head)
+  
+      counter += countNodes(this.head.right)
+      counter += countNodes(this.head.left);
+  
+      console.log(counter)
+      return counter; 
+    }
+}
+
+const nodeG = new Node(7);
+
+const nodeE = new Node(4);
+nodeE.Right = nodeG;
+
+const nodeF = new Node(15);
+
+
+const nodeD = new Node(8);
+
+const nodeB = new Node(-3);
+nodeB.Left = nodeD;
+
+const nodeC = new Node(20);
+nodeC.Left = nodeE;
+nodeC.Right = nodeF;
+
+const parentNode = new Node(8);
+parentNode.Left = nodeB;
+parentNode.Right = nodeC;
+
+
+function exists(bt, data) {
+  if (bt === null) {
+    return false;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  if (bt.data === data) {
+    return true;
+  }
 
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
+  if (exists(bt.left, data) || exists(bt.right, data)) {
+    return true;
+  } else {
+    return false;
   }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
+function printLevelOrder(bt) {
+  if (bt === null) {
+    return;
+  }
 
-function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  const queue = []; 
+  const outputArray = [];
+  queue.push(bt);
+
+  while (queue.length > 0) {
+    const currentNode = queue.shift(); 
+
+    outputArray.push(currentNode.data); 
+
+   
+    if (currentNode.left !== null) {
+      queue.push(currentNode.left);
+    }
+
+   
+    if (currentNode.right !== null) {
+      queue.push(currentNode.right);
+    }
+  }
+
+  return outputArray;
 }
+
+// tree
+
+function printTree(node, indent) {
+  let result = `Data: ${node.data}\n`;
+
+  if (node.left) {
+      result += `${indent}  left: ${printTree(node.left, indent + '    ')}\n`;
+  } else {
+      result += `${indent}  left: null\n`;
+  }
+
+  if (node.right) {
+      result += `${indent}  right: ${printTree(node.right, indent + '    ')}\n`;
+  } else {
+      result += `${indent}  right: null\n`;
+  }
+
+  return result;
+}
+
+//console.log(printLevelOrder(parentNode))
+
+
+
+// console.log(exists(parentNode, 15)); // true
+// console.log(exists(parentNode, 300)); // false
+
+
+console.log(parentNode.toString());
+
+function countLeaves(bt) {
+  if (bt === null) {
+    return "zero";
+  }
+
+  const queue = []; 
+  let count = 0;
+  queue.push(bt);
+
+  while (queue.length > 0) {
+    const currentNode = queue.shift(); 
+
+    if (currentNode.left === null && currentNode.right === null) {
+      count = count + 1;
+    }
+
+   
+    if (currentNode.left !== null) {
+      queue.push(currentNode.left);
+    }
+
+   
+    if (currentNode.right !== null) {
+      queue.push(currentNode.right);
+    }
+  }
+
+  return count;
+       
+}
+
+console.log(countLeaves(parentNode));
+
+createBTree.preIndex = 0;
+
+function createBTree(inOrder, preOrder, start, end) {
+      if (start > end) {
+        return null;
+      }
+
+    
+      const data = preOrder[createBTree.preIndex];
+      createBTree.preIndex++;
+      const root = new Node(data);
+
+
+      if (start === end) {
+        return root;
+      }
+
+
+      const inIndex = inOrder.indexOf(data);
+
+
+      root.left = createBTree(inOrder, preOrder, start, inIndex - 1);
+      root.right = createBTree(inOrder, preOrder, inIndex + 1, end);
+
+      return root;
+}
+
+
+console.log(printTree( createBTree([4, 2, 5, 1, 6, 3],[1, 2, 4, 5, 3, 6], 0, 5),' ' ));
+
+
+// BST
+
+function insertToBST(bst, data) {
+  if (bst === null) {
+    return new Node(data);
+  }
+
+  if (data < bst.data) {
+    bst.left = insertToBST(bst.left, data);
+  }
+
+  else {
+    bst.right = insertToBST(bst.right, data);
+  }
+
+  return bst;
+}
+
+function existsInBST(bst, data){
+  if (bst === null){
+    return false;
+  }
+
+  if (data === bst.data){
+    return true;
+  } else if (data < bst.data){
+    return existsInBST(bst.left, data);
+  } else {
+    return existsInBST(bst.right, data);
+  }
+}
+
+const root = insertToBST(null, 15);
+insertToBST(root, 6);
+insertToBST(root, 16);
+insertToBST(root, 5);
+insertToBST(root, 8);
+insertToBST(root, 26);
+insertToBST(root, 6);
+insertToBST(root, 9);
+
+
+// console.log(printTree(root));
+
+// console.log(root.toString());
+
+// console.log(existsInBST(root, 6)) // true
+// console.log(existsInBST(root, 55)) // false
+
+
